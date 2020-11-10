@@ -2,8 +2,11 @@
 
 const fs = require('fs')
 
+const sting_input = fs.readFileSync('./input.txt', 'UTF-8')
+const number_input = sting_input.split(",").map(num => +num) //Converts input to array of numbers
+
 const IntcodeComputer = (input, noun, verb) => {
-    const array = input
+    const array = [...input]
     array[1] = noun
     array[2] = verb
     for (let opcodeIndex = 0; opcodeIndex < array.length; opcodeIndex += 4) {
@@ -25,8 +28,6 @@ const IntcodeComputer = (input, noun, verb) => {
 
 for (let noun = 0; noun <= 99; noun++) {
     for (let verb = 0; verb <= 99; verb++) {
-        const sting_input = fs.readFileSync('./input.txt', 'UTF-8')
-        const number_input = sting_input.split(",").map(num => +num) //Converts input to array of numbers
         console.log(`Noun: ${noun} Verb: ${verb}`)
         if (IntcodeComputer(number_input, noun, verb) === 19690720) {
             console.log(`The answer: ${100 * noun + verb}`)
