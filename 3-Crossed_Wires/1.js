@@ -20,34 +20,34 @@ const PlotMovement = (coordinate, wire) => {
     const direction = coordinate.slice(0,1) // R
     const amountToMove = coordinate.slice(1, coordinate.length) // 75
 
-    const arrayOfPoints = []
+    const pointsCrossedAlong = []
 
     switch (direction) {
         case "R": 
             for (let i=0; i<amountToMove; i++) {
-                arrayOfPoints.push({x: ++currentCoordinates.x, y: currentCoordinates.y})
+                pointsCrossedAlong.push({x: ++currentCoordinates.x, y: currentCoordinates.y})
             }
             break
         case "L": 
             for (let i=0; i<amountToMove; i++) {
-                arrayOfPoints.push({x: --currentCoordinates.x, y: currentCoordinates.y})
+                pointsCrossedAlong.push({x: --currentCoordinates.x, y: currentCoordinates.y})
             }
             break
         case "U": 
             for (let i=0; i<amountToMove; i++) {
-                arrayOfPoints.push({x: currentCoordinates.x , y: ++currentCoordinates.y})
+                pointsCrossedAlong.push({x: currentCoordinates.x , y: ++currentCoordinates.y})
             }
             break
         case "D": 
             for (let i=0; i<amountToMove; i++) {
-                arrayOfPoints.push({x: currentCoordinates.x , y: --currentCoordinates.y})
+                pointsCrossedAlong.push({x: currentCoordinates.x , y: --currentCoordinates.y})
             }
             break
     }
     if (wire == 'wire1') {
-        wire_1_graph = wire_1_graph.concat(arrayOfPoints)
+        wire_1_graph = wire_1_graph.concat(pointsCrossedAlong)
     } else {
-        wire_2_graph = wire_2_graph.concat(arrayOfPoints)
+        wire_2_graph = wire_2_graph.concat(pointsCrossedAlong)
     }
 }
 
