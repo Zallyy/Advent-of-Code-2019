@@ -62,6 +62,7 @@ const CheckForCrossedPaths = (wire_1_graph, wire_2_graph) => {
         }
     }
 }
+
 const FindDistance = () => {
     let distances = []
     crossPoints.forEach(point => {
@@ -76,11 +77,11 @@ wire1.forEach(wire => {
     PlotMovement(wire, "wire1")
 })
 currentCoordinates = {x:0, y:0} //Reset to the start point
+
 wire2.forEach(wire => {
     PlotMovement(wire, "wire2")
 })
 currentCoordinates = {x:0, y:0} //Reset to the start point
 
 CheckForCrossedPaths(wire_1_graph, wire_2_graph)
-console.log(crossPoints)
 FindDistance()
