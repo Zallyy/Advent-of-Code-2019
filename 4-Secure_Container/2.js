@@ -35,7 +35,6 @@ function GetPasswords() {
             if (numbers.includes(1)) {
                 num = num.join('')
                 solutions.push(+num)            
-                numberValid = false
             }
         }
     })
