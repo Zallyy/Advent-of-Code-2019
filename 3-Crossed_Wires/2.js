@@ -7,13 +7,10 @@ const wire2_data = fs.readFileSync('./wire2.txt', 'UTF-8')
 const wire2 = wire2_data.split(",")
 
 let currentCoordinates = {x:0, y:0}
-let wire_1_graph = [
-    {x:0 , y:0} 
-]
-let wire_2_graph = [
-    {x:0 , y:0} 
-]
+let wire_1_graph = []
+let wire_2_graph = []
 let crossPoints = []
+let wireStepsArray = []
 
 const PlotMovement = (coordinate, wire) => {
     //Get Direction
@@ -64,14 +61,11 @@ const CheckForCrossedPaths = (wire_1_graph, wire_2_graph) => {
 }
 
 const findNumberOfSteps = () => {
-    crossPoints.forEach(crossMark => {
-        wire_1_graph.forEach(point => {
-            if (point.x == crossMark.x && point.y == crossMark.y) {
-                
-            } else {
-                crossMark.wire1_steps++
-            }
-        })
+    crossPoints.forEach(markedPoint => {
+        let wire1steps = wire_1_graph.findIndex(point => point.x == markedPoint.x && point.y == markedPoint.y)
+        let wire2steps = wire_2_graph.findIndex(point => point.x == markedPoint.x && point.y == markedPoint.y)        
+        let totalSteps = (wire1steps+1) + (wire2steps+1)
+        wireStepsArray.push(totalSteps)
     })
 }
 
@@ -87,11 +81,9 @@ currentCoordinates = {x:0, y:0} //Reset to the start point
 
 CheckForCrossedPaths(wire_1_graph, wire_2_graph)
 
-console.log(wire_1_graph)
-console.log(wire_2_graph)
-
 findNumberOfSteps()
 
-console.log(crossPoints)
+wireStepsArray = wireStepsArray.sort((a,b) => a - b)
+console.log(`Answer ${wireStepsArray[0]}`)
 
 
