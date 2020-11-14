@@ -66,6 +66,7 @@ const IntcodeComputer = (program) => {
                 array[values[0]] = +userInput
                 break
             case 4: 
+                console.log(array)
                 console.log(values[0])
                 console.log(`index: ${i}`)
                 break
@@ -79,6 +80,5 @@ const IntcodeComputer = (program) => {
     }
 }
 
-// let output = IntcodeComputer(["1101", "100", "-1", "4", "0"])
-let output = IntcodeComputer(string_input)
-// console.log(output)
+// IntcodeComputer(["1101", "100", "-1", "4", "0"])
+IntcodeComputer(string_input)
