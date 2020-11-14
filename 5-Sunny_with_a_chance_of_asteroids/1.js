@@ -1,5 +1,4 @@
 // --- Day 5: Sunny with a Chance of Asteroids ---
-const prompt = require('prompt-sync')();
 const fs = require('fs')
 
 const input = fs.readFileSync('./input.txt', 'UTF-8')
@@ -7,7 +6,7 @@ const string_input = input.split(",").map(num => num) //Converts input to array 
 
 const IntcodeComputer = (program) => {
     const array = program.map(num => +num)
-    let userInput
+    let userInput = 1
     let ip //Instruction pointer 
 
     for (let i=0; i<array.length-1; i+=ip) {
@@ -29,7 +28,6 @@ const IntcodeComputer = (program) => {
         switch (+mode[4]) {
             case 3:
                 ip = 2 
-                userInput = prompt('userInput: ');
                 parameters.push({value: array[i+1], mode: 1})
                 break
             case 4: 
