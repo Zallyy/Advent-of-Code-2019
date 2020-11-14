@@ -27,11 +27,8 @@ const IntcodeComputer = (program) => {
 
         switch (+mode[4]) {
             case 3:
-                ip = 2 
-                parameters.push({value: array[i+1], mode: 1})
-                break
             case 4: 
-                ip = 2
+                ip = 2 
                 parameters.push({value: array[i+1], mode: 1})
                 break
             default: 
