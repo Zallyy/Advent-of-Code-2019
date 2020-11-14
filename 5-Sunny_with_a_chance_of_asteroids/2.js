@@ -7,13 +7,15 @@ const string_input = input.split(",").map(num => num) //Converts input to array 
 const IntcodeComputer = (program) => {
     const array = program.map(num => +num)
     let userInput = 1
-    let ip 
-    
+    let ip //Instruction pointer 
+
     for (let i=0; i<array.length-1; i+=ip) {
+        // console.log(array)
         //           A   B   C   D   E
         let mode = ["1","0","0","0","0"]
         //Parse the mode 
         let modeString = array[i].toString().split('')
+        console.log(modeString)
         for (j=0; j<modeString.length; j++) {
             mode[4-j] = modeString[(modeString.length-1)-j]
         }
