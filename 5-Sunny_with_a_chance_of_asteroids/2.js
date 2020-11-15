@@ -35,7 +35,8 @@ const IntcodeComputer = (program) => {
             case 6:
                 parameters.push({value: array[ip+1], mode: mode[2]})
                 parameters.push({value: array[ip+2], mode: mode[1]})
-        }
+        	break
+	}
 
         let values = []
         parameters.forEach(param => {
@@ -45,7 +46,7 @@ const IntcodeComputer = (program) => {
                 values.push(array[param.value])
             }
         })
-
+        //Value 0, 1, 3 (a,b,c)
         switch(+mode[4]) {
             case 1: 
                 ip += 4
@@ -80,17 +81,17 @@ const IntcodeComputer = (program) => {
             case 7:
                 ip += 4 
                 if (values[0] < values[1]) {
-                    values[2] = 1
+                    array[values[2]] = 1
                 } else {
-                    values[2] = 0
+                    array[values[2]] = 0
                 }
                 break
             case 8: 
                 ip += 4
                 if (values[0] == values[1]) {
-                    values[2] = 1
+                    array[values[2]] = 1
                 } else {
-                    values[2] = 0
+                    array[values[2]] = 0
                 }
                 break
         }
@@ -104,4 +105,4 @@ const IntcodeComputer = (program) => {
 
 //Main case
 IntcodeComputer(string_input)
-// IntcodeComputer([3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99])
+// IntcodeComputer([3,9,8,9,10,9,4,9,99,-1,8])
