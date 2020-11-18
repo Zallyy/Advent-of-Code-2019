@@ -5,7 +5,8 @@ input = input.split('\n')
 
 let orbitList = []
 let orbitChain = []
-let relationships = 0 
+let childParentList = {}
+let orbitalTransfers = 0 
 
 //Parse into relationships
 input.forEach(orbitalPair => {
@@ -60,21 +61,38 @@ const ListRelationships = (parent, child) => {
     dict[child].push(parent)
 }
 
-const CountRelationships = () => {
-    Object.keys(dict).forEach( key => {
-        let currentKey = key
+const ListOfAllParents = (planets) => {
+    //Grab a list of parents for each
+    planets.forEach(point => {
+        let currentKey = point
         while (currentKey != 'COM') {
-            relationships++
+            if (!(point in  childParentList)) {
+                childParentList[point] = []
+            }
+            // console.log(`${point} ${currentKey}`)
+            childParentList[point].push(dict[currentKey])
             currentKey = dict[currentKey]
         }
     })
+}
+
+const FindCommonAncestor = () => {
+    let keys = Object.keys(childParentList)
+    for (let i=0; i<childParentList[keys[0]].length; i++) {
+        for (let j=0; j<childParentList[keys[1]].length; j++) {
+            if (childParentList[keys[0]][i] == childParentList[keys[1]][j]) {
+                orbitalTransfers = i + j - 2;
+                return
+            }
+        }
+    }
 }
 
 orbitList.forEach(({parent, child}) => {
     ListRelationships(parent,child)
 })
 
-console.log(dict)
+ListOfAllParents(['YOU', 'SAN'])
+FindCommonAncestor()
 
-CountRelationships()
-console.log(`Relationships: ${relationships}`)
+console.log(`Orbital Transfers: ${orbitalTransfers}`)
