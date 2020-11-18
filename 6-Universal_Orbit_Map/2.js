@@ -69,7 +69,6 @@ const ListOfAllParents = (planets) => {
             if (!(point in  childParentList)) {
                 childParentList[point] = []
             }
-            // console.log(`${point} ${currentKey}`)
             childParentList[point].push(dict[currentKey])
             currentKey = dict[currentKey]
         }
